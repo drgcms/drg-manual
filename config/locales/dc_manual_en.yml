@@ -1,0 +1,91 @@
+#--
+# Copyright (c) 2018+ Damjan Rems
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#++
+en:
+  dc_manual:
+    new: Create new manual
+    edit: Edit manual
+    edit_chapter: 'Edit: %{title}'
+    new_chapter: 'Create new chapter in %{title}'
+    updated: 'Last update:'
+    list: All manuals
+    
+  helpers:
+    label:  
+      dc_manual:
+        tabletitle: Manual
+        1basic: Basic
+        2body: Body
+        3pages: Subpages
+
+        title: Title
+        link: Link
+        body: Body 
+        image: Image
+        author: Autor
+        order: Order
+        policy_id: Policy
+        active: Active
+        dc_manual_pages: Subpages
+        updated_at: Updated
+
+      dc_manual_pages:
+        tabletitle: Page - chapter
+        1basic: Basic
+        2body: Body
+        3pages: Subpages
+
+        title: Chapter
+        link: Link
+        use_page: Use page
+        body: Body
+        image: Image
+        author: Author
+        order: Order
+        policy_id: Policy
+        active: Active
+        dc_manual_pages: Subpages
+        updated_at: Updated
+      
+    help:
+      dc_manual:
+        title: Manual title
+        link: Link for manual access
+        body: Shorter description of manual
+        image: Image
+        author: Author name
+        order: Order of page in menu
+        policy_id: Manual access policy
+        active: Manual is active
+        drg_manual_pages: Manual chapters
+        
+      dc_manual_pages:
+        title: Chapter title
+        link: Link for this chapter
+        use_page: Use page from other manual
+        body: Vsebina poglavja
+        image: Image
+        author: Chapter author name
+        order: Chapter order in menu
+        policy_id: Chapter access policy
+        active: Chapter is active
+        drg_manual_pages: Manual sub chapters

@@ -1,0 +1,17 @@
+## Form for dc_manual settings
+table: dc_memory
+title: helpers.dc_manual.settings
+controls: design_element_settings
+
+form:
+  actions: 
+    1: save
+
+  fields:
+    10:
+      name: prirocnik_id
+      text: helpers.dc_manual.drg_manual_id
+      help: helpers.dc_manual.drg_manual_id_help
+      type: select
+      eval: "dc_choices4('dc_manual','title')"
+      

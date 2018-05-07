@@ -1,0 +1,58 @@
+# Form DcManual
+table: dc_manual
+index:
+  actions: standard
+  
+result_set:
+  actions: 
+    standard : yes
+
+  columns:
+    10:  
+      name: title
+      width: 30%
+    20:  
+      name: updated_at
+      format: '%d.%m.%Y'
+    30:  
+      name: order
+    40: 
+      name: active
+      eval: dc_icon4_boolean      
+
+form:
+  actions: standard
+
+  tabs:
+    1basic:
+      10:
+        name: title
+        type: text_field
+        size: 80
+      20:
+        name: link
+        type: text_field
+        size: 80
+      30:
+        name: policy_id
+        type: select
+        eval: dc_choices4_site_policies
+        html:
+          include_blank: true
+      40:
+        name: active
+        type: check_box
+        
+    2body:
+      20:
+        name: body
+        type: html_field
+        options: 'height: 800,width: 800'
+        
+    3pages:
+      10:
+        name: dc_manual_pages
+        type: embedded
+        form_name: dc_manual_page
+        html:
+          height: 1000

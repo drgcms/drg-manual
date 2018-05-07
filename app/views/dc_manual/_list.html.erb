@@ -1,0 +1,13 @@
+<h2><%= t('dc_manual.list') %></h2>
+<div class="manual-list">
+<% manuals.each do |manual| %>
+   <div class="title">
+     <% if dc_edit_mode?
+       dc_link_for_edit({ action: 'edit', table: 'dc_manual', id: manual._id, 
+                          title: "#{t('drgcms.edit')} #{manual.title}" })
+      end %>
+     <%= link_to(manual.title, "/#{@page.link}/#{manual.link}") %>
+     <div class="description"><%= manual.description %></div>
+   </div>
+<% end %>
+</div>

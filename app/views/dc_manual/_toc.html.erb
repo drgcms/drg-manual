@@ -1,0 +1,10 @@
+<div class="book-top"><%= book.title %>
+  <div class="book-contents">
+    <% chapters.each do |chapter| %>
+      <% a=chapter.chapter.split('.'); last=a.last; level=a.size%>
+      <div class="book-contents-level<%= level %>">
+        <%= link_to(chapter.title, method: 'chapter', book_id: chapter.dc_book.link, chapter_id: chapter.link ) %>
+      </div>
+    <% end %>
+  </div>
+</div>

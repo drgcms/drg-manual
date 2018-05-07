@@ -1,0 +1,70 @@
+# Form for drg_manual_pages
+table: dc_manual_pages
+index:
+  actions: new
+  
+result_set:
+  actions: 
+    standard : yes
+
+  columns:
+    10:  
+      name: title
+      width: 30%
+    20:  
+      name: updated_at
+      format: '%d.%m.%Y'
+    30:  
+      name: order
+    40: 
+      name: active
+      eval: dc_icon4_boolean
+      width: 5%
+
+form:
+  actions: standard
+
+  tabs:
+    1basic:
+      10:
+        name: title
+        type: text_field
+        size: 80
+      20:
+        name: link
+        type: text_field
+        size: 80
+      30:
+        name: policy_id
+        type: select
+        eval: dc_choices4_site_policies
+        html:
+          include_blank: true
+      40:
+        name: order
+        type: text_field
+        size: 2
+        
+      50:
+        name: active
+        type: check_box
+        
+      60:
+        name: use_page
+        type: tree_select
+        eval: "DcManual.get_all_menus()"
+        style: "max-height: 300px"
+        
+    2body:
+      20:
+        name: body
+        type: html_field
+        options: 'height: 600,width: 800'
+        
+    3pages:
+      10:
+        name: dc_manual_pages
+        type: embedded
+        form_name: dc_manual_page
+        html:
+          height: 1000
