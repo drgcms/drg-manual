@@ -21,6 +21,15 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 sl:
+  dc_manual:
+  new: Nov priročnik
+  edit: Urejanje priročnika
+  edit_chapter: 'Urejanje: %{title}'
+  new_chapter: 'Novo poglavje v %{title}'
+  updated: 'Zadnja sprememba:'
+  list: Seznam priročnikov
+    
+
   helpers:
     label:  
       dc_manual:

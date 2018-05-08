@@ -27,7 +27,7 @@ en:
     edit_chapter: 'Edit: %{title}'
     new_chapter: 'Create new chapter in %{title}'
     updated: 'Last update:'
-    list: All manuals
+    list: List of available manuals
     
   helpers:
     label:  

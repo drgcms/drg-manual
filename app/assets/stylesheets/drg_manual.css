@@ -31,9 +31,15 @@
 .manual .title {
   font-size: 1.3em;
   font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.manual .title .description {
+  font-weight: normal;
+  padding-bottom: 1rem;
 }
 .manual .title a {
-  color: #db363a;
+
 }
 .manual .menu a:hover {
   color: #444;
@@ -46,7 +52,23 @@
 }
 
 .manual .column:first-child {
-  background: linear-gradient(to top, #eee 0%, #fefefe 100%); 
+  background: linear-gradient(to bottom, #fcfcfc 0%, #eee 100%); 
   padding: 1em;
   border-radius: 2px;
 }
+
+#manual-menu.menu {
+  display: block;
+}
+
+#manual-menu.menu .submenu-toggle::after {
+  border-color: #444 transparent;
+}
+
+#manual-menu .submenu-toggle {
+  width: 6px;
+  height: 6px;
+  top: 6px;
+  right: 8px;
+}
+

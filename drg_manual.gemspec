@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["drgcms@gmail.com"]
   s.homepage    = "http://www.drgcms.org"
   s.summary     = "DRG CMS: Manual plugin"
-  s.description = "DRG CMS: Plugin for writing application manuals"
+  s.description = "DRG CMS: Plugin for writing documentation manuals"
   s.license     = "MIT-LICENSE"
   s.metadata    = { 'source_code' => 'https://github.com/drgcms/drg-manual' }
 
