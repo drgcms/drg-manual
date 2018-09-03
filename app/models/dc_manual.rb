@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2018 Damjan Rems
+# Copyright (c) 2018+ Damjan Rems
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,7 +21,9 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-
+##########################################################################
+# DcManual model definition. DcManual defines common data for manual document.
+##########################################################################
 class DcManual
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -108,15 +110,7 @@ def self.update_menu(document)
 end
 
 ######################################################################
-# Meni za vse
-######################################################################
-#def self.all_manuals_menu()
-#  manuals = self.only(:id, :title, :link).where(active: true).order_by(title: 1).to_a
-#  manuals.inject([]) { |result, manual| result += self.meni_en_prirocnik(element) }
-#end
-
-######################################################################
-# Returns menu for manual
+# Returns menu for single manual
 ######################################################################
 def self.get_menu(manual)
   manual.menu.split("\n").each.inject([]) do |result, line|
@@ -125,7 +119,7 @@ def self.get_menu(manual)
 end
 
 ######################################################################
-# Vrne menije za vse priročnike
+# Returns menu for all manuals
 ######################################################################
 def self.get_all_menus()
   manuals = self.only(:menu).where(active: true).order_by(title: 1).to_a
