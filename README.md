@@ -2,7 +2,7 @@
 
 DrgManual implements documentation manual web element for DRG CMS.
 
-##Usage:
+## Usage
 
 Add this line to your Gemfile:
 
