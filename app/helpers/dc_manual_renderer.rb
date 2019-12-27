@@ -179,7 +179,7 @@ def default
 #    
   can_view, msg = dc_user_can_view(@parent, @manual_page)
   html << if can_view
-%Q[<h2>#{@manual_page.title}</h2>#{@manual_page.body}<br>
+%Q[<h1>#{@manual_page.title}</h1>#{@manual_page.body}<br>
 <div class='updated'>
   #{t('dc_manual.updated')} <b>#{@manual_page.updated_at.strftime('%d.%m.%Y')}</b>
 </div>]

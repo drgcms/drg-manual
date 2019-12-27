@@ -27,8 +27,8 @@ menu:
     icon: book lg        
     items:
       10:
-        caption: helpers.label.drg_manual.tabletitle
+        caption: helpers.label.dc_manual.tabletitle
         controller: cmsedit
         icon: book lg        
-        table: drg_manual
+        table: dc_manual
                 

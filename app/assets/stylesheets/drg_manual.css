@@ -23,6 +23,10 @@
 #++
 */
 
+.manual .body {
+  font-size: 1.2em;
+  font-weight: 400;
+}
 .manual .menu a {
   padding: 5px 0;
   font-size: 1.2em;
@@ -57,6 +61,11 @@
   border-radius: 2px;
 }
 
+.manual h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 #manual-menu.menu {
   display: block;
 }
@@ -70,5 +79,24 @@
   height: 6px;
   top: 6px;
   right: 8px;
+}
+
+.docs h1 {
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+.docs .manual-list {
+  font-size: 1.2em;
+}
+.manual-list h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+.manual-list .title {
+  padding-bottom: 1rem;
+  line-height: 1.5rem;
 }
 
