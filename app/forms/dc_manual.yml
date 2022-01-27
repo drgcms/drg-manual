@@ -29,6 +29,10 @@ form:
         name: title
         type: text_field
         size: 80
+      15:
+        name: description
+        type: text_field
+        size: 80
       20:
         name: link
         type: text_field
