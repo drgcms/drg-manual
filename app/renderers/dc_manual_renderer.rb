@@ -1,4 +1,3 @@
-#coding: utf-8
 #--
 # Copyright (c) 2018+ Damjan Rems
 #
@@ -27,6 +26,7 @@
 ########################################################################
 class DcManualRenderer
 include DcApplicationHelper
+include CmsCommonHelper
 
 ########################################################################
 #
@@ -54,27 +54,27 @@ end
 # Find document.
 ########################################################################
 def find_document
-# found bookname in path link 
+  # found bookname in path link
   book_name_ix = @path.index(@parent.page.link)
   @manual      = DcManual.find_by(link: @path[book_name_ix+1])
   if @manual
     @prepand_path = @path.shift(book_name_ix+2)
   else
-# manual_id should be set in page settings   
-    manual_id  = @opts.dig(:settings, 'manual', 'manual_id')
+    # manual_id should be set in page settings
+    manual_id     = @opts.dig(:settings, 'manual', 'manual_id')
     @prepand_path = @path.shift(book_name_ix+1)
     @manual       = DcManual.find(manual_id) if manual_id
   end  
   return if @manual.nil?
-# ids for editing manual page
+  # ids for editing manual page
   @manual_ids  = '' 
-# Determine selected page
+  # Determine selected page
   @manual_page = @manual
   while (link_page = @path.shift) != nil do
     @manual_ids << (@manual_ids.blank? ? '' : ';') + "#{@manual_page.id}"
     @manual_page = @manual_page.dc_manual_pages.find_by(link: link_page)
     if @manual_page.nil?
-# select first page if path is in error    
+      # select first page if path is in error
       @manual_page = @manual
       break 
     end      
@@ -95,15 +95,15 @@ end
 # Create submenus for a menu
 ########################################################################
 def submenu(menu_item, menu, parent_path)
-# is active when ids path matches parent path or last (my id) matches manual_page
+  # is active when ids path matches parent path or last (my id) matches manual_page
   last_item = menu_item[1].split(';').last
   is_active = (@manual_ids.match(menu_item[1]) or last_item.match(@manual_page.id.to_s)) ? ' is-active' : '' 
   
   html = parent_path.blank? ? '' : "<li class=\"#{is_active}\">#{menu_link_for(menu_item, parent_path)}" 
-# select subpages  
+  # select subpages
   sub_pages = menu.select {|e| e[2] == menu_item[1]}
   return html if sub_pages.size == 0
-#  
+
   sub_pages.sort! {|a,b| a[3] <=> b[3]}
   sub_pages.each do |page|
     html << %Q[<ul class="menu vertical nested #{is_active}" >]
@@ -125,13 +125,20 @@ def manual_menu
 </ul>]
 end
 
+########################################################################
+# 
+########################################################################
+def body_for_examples
+  @manual_page.body
+end
+
 #######################################################################
 # Render manual data
 #######################################################################
 def default
   @path = @opts[:path]
-  return list if @path.size == 1 
-# link for manual settings on the page  
+  return list if @path.size == 1 and @opts.dig(:settings, 'manual', 'manual_id').nil?
+  # link for manual settings on the page
   edit_html = ''
   if dc_edit_mode?
     edit_html << @parent.dc_link_for_edit(table: 'dc_memory', title: 'dc_manual.settings', 
@@ -142,13 +149,13 @@ def default
   end
   find_document()
   return "ERROR! #{@parent.params[:path]} #{edit_html}" if @manual.nil? or @manual_page.nil?
-#  
+
   if dc_edit_mode?
     opts = { action: 'edit', table: 'dc_manual', 
              id: @manual._id, title: 'dc_manual.edit' }
     edit_html << dc_link_for_edit(opts)    
   end
-#
+
   html = %Q[
 <div class="wrap">
 <div class="row manual">
@@ -156,8 +163,8 @@ def default
     #{edit_html}#{manual_menu()}
   </div>
   <div class="column small-12 medium-9 large-8 body">]
-#
-# ;add dc_manual_pages 
+
+  # ;add dc_manual_pages
   no_subsections = @manual_ids.split(';').size
   table = 'dc_manual' + ';dc_manual_page'*no_subsections
   form_name = @manual_ids.blank? ? 'dc_manual' : 'dc_manual_page'
@@ -168,7 +175,7 @@ def default
                title: I18n.t('dc_manual.edit_chapter', title: @manual_page.title) }
       html << dc_link_for_edit(opts) + '<br>'.html_safe
     end
-# Add new subchapter
+    # Add new subchapter
     ids = @manual_ids + (@manual_ids.blank? ? '' : ';') + @manual_page.id.to_s
     table = 'dc_manual' + ';dc_manual_page'*(no_subsections+1)
     opts = { controller: 'cmsedit', action: 'new', form_name: 'dc_manual_page', 
@@ -176,17 +183,19 @@ def default
              title: I18n.t('dc_manual.new_chapter', title: @manual_page.title) }
     html << dc_link_for_create(opts) + '<br>'.html_safe  
   end
-#    
+
   can_view, msg = dc_user_can_view(@parent, @manual_page)
+  # process body before it is outputed to browser
+  body = @opts[:body_render] ? send(@opts[:body_render]) : @manual_page.body
   html << if can_view
-%Q[<h1>#{@manual_page.title}</h1>#{@manual_page.body}<br>
+%Q[<h1>#{@manual_page.title}</h1>#{body}<br>
 <div class='updated'>
   #{t('dc_manual.updated')} <b>#{@manual_page.updated_at.strftime('%d.%m.%Y')}</b>
 </div>]
   else
     msg
   end
-  html << '</div></div></div>'
+  html << '</div>'*3
 end
 
 ########################################################################
